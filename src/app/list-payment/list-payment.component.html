@@ -1,0 +1,48 @@
+
+<br>
+<br>
+<br>
+<h2>List Payment</h2>
+<br>
+<div>
+    Search : <select [(ngModel)]="selectOption" (click)="clear()">
+        <option value="">select option</option>
+        <option value="userName" >Name</option>
+        <option value="price" >Price</option>
+        <option value="cardNo" >Card No</option>
+    </select> &nbsp;&nbsp;
+    <input type="text" [(ngModel)]="searchText">
+
+</div><br><br>
+<div *ngIf="status">
+    Name : <input type="text" [(ngModel)]="userName"/> &nbsp; Price :
+    <input type="number" [(ngModel)]="price"/> &nbsp; CardNo :
+    <input type="number" [(ngModel)]="cardNo"/> <br />
+    <br />
+    <button (click)="updateDetails()">Update</button> &nbsp;&nbsp;&nbsp;
+    <button (click)="status=false">Cancel</button>
+</div>
+
+<br>
+
+<table class=table datatable >
+    <thead class="table-dark">
+        <tr>
+            <td>S.NO</td>
+            <td>UserName</td>
+            <td>Price</td>
+            <td>Card No</td>
+            <td>operations</td>
+        </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of detail|filter:selectOption:searchText; index as i;even as e;odd as o" [ngClass]="{'table-success' : o}">
+        <td scope="row">{{i+1}}</td>
+        <td>{{data.userName}}</td>
+        <td>{{data.price | currency :'INR'}}</td>
+        <td>{{data.cardNo | creditvalue}}</td>   
+        <td><button (click)="edit(data,i)">Edit</button>&nbsp;<button (click)="delete(data,i)">Delete</button></td>     
+    </tr>
+</tbody>
+</table>
+

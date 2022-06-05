@@ -1,0 +1,18 @@
+<br><br><h2>Add Payment</h2>
+<br />
+
+ Name : <input type="text" [(ngModel)]="userName" /> &nbsp; Price :
+<input type="number" [(ngModel)]="price" /> &nbsp; CardNo :
+<input type="number" [(ngModel)]="cardNo" placeholder="Enter 16 digit"/> <br> <br>
+
+ <span *ngIf="cardNo>=0 && cardNo != null"><img [src]="cardNo | creditimg" alt=''> </span>
+ 
+  <br><br>  
+
+
+
+<button [disabled]="userName == '' || price == null || cardNo == null "  (click)="addDetailToService()">
+  Add Payment
+</button>
+&nbsp;&nbsp;&nbsp;
+<button (click)="clear()">Clear</button>
